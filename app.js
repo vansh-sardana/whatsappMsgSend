@@ -33,8 +33,8 @@ Please check on the person as soon as possible`);
 const app = express();
 app.use(express.json());
 
-app.post('/send-message', (req, res) => {
-    const { lat, lng } = req.body;
+app.get('/send-message', (req, res) => {
+    const { lat, lng } = req.body.params;
     if (lat && lng) {
         sendMsg(lat, lng)
             .then(() => {

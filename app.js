@@ -34,7 +34,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/send-message', (req, res) => {
-    const { lat, lng } = req.body.params;
+    const { lat, lng } = req.params;
     if (lat && lng) {
         sendMsg(lat, lng)
             .then(() => {

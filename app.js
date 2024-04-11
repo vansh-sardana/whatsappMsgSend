@@ -13,21 +13,27 @@ const client = new Client({
 });
 
 client.on('qr', qr => {
-    qrcode.generate(qr, {small: true});
+    console.log(qrcode.generate(qr, {small: true}));
+    console.log("done");
 });
+
+client.on('ready', ()=>{
+    console.log('ready');
+})
 
 client.initialize();
 
 async function sendMsg(lat, lng) {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    const number = '917011263403';
+    
+    const number = '918368382376';
     const chatId = number + '@c.us';
+    console.log("received request");
     await client.sendMessage(chatId, 
 `EMERGENCY ALERT!
 Fall Detected!
 A fall has been detected.
 Last Known Location: https://maps.google.com?q=${lat},${lng}
-Please check on the person as soon as possible`);
+Please check on the person as soon as possible`).then(()=>console.log("done"));
 }
 
 const app = express();
